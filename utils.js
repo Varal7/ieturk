@@ -14,7 +14,6 @@ if(isVisible){
     $('.collapse-text').text('(Click to expand)');
 }
 });
-// end expand/collapse
 
 //// highlight selected category
 var inputs = $("#Inputs input:radio");
@@ -31,28 +30,7 @@ if($(this).is(":checked")){
     $(this).parent().addClass("btn-default");
 }
 });
-// end highlight
 
-//// shuffle using j and k
-//var cur = "no";
-//var next = {yes: "yesbut", "yesbut": "no", "no": "yes"};
-//var prev = {yes: "no", "yesbut": "yes", "no": "yesbut"};
-
-//var buttons = {
-    //yes: $('#yes'),
-    //yesbut: $('#yesbut'),
-    //no: $('#no')
-//};
-
-//buttons[cur].click();
-//$(document).on('keypress', function(e) {
-    //if (e.key == 'j') {
-        //cur = next[cur];
-        //buttons[cur].click();
-    //} else if (e.key == 'k') {
-        //cur = prev[cur];
-        //buttons[cur].click();
-    ////} else if (e.key == 'Enter') {
-    ////    $('#submit').click();
-    //}
-//});
+// update when clicking on checkbox
+var checkboxes = $("#form input:checkbox");
+checkboxes.change(function() { show(); });

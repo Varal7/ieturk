@@ -23,6 +23,11 @@ var tagHidden = {
     "version":$('#version-tag'),
     "protocol":$('#protocol-tag'),
 }
+var noVal = {
+    "name":$('#no-name'),
+    "version":$('#no-version'),
+    "protocol":$('#no-protocol'),
+}
 var annotations = {
     "name": [],
     "version": [],
@@ -33,6 +38,7 @@ var values = {
     "version": "",
     "protocol": "",
 }
+
 
 
 var tokens = raw.text().split(">>");
@@ -132,10 +138,10 @@ var sequence_html = function(sequence, annotations) {
 
 
 
-var can_submit = function() {
-    if (values["name"] == "") { return false; }
-    if (values["version"] == "") { return false; }
-    if (values["protocol"] == "") { return false; }
+var canSubmit = function() {
+    if (values["name"] == "" && !noVal['name'].is(":checked")) { return false; }
+    if (values["version"] == "" && !noVal['version'].is(":checked")) { return false; }
+    if (values["protocol"] == "" && !noVal['protocol'].is(":checked")) { return false; }
     return true;
 }
 
@@ -162,7 +168,7 @@ var show = function() {
         mouse_up(parseInt($(this).attr('id').split("_")[1]));
     });
 
-    if (can_submit()) {
+    if (canSubmit()) {
         submit.removeAttr("disabled");
         submit.removeClass("btn-default");
         submit.addClass("btn-success");
