@@ -1,0 +1,94 @@
+<meta content="width=device-width,initial-scale=1" name="viewport" />
+<section class="container" id="Relevancy">
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <div class="panel panel-primary"><a class="panel-heading" href="javascript:void(0);" id="collapseTrigger"><strong>Tagging Instructions</strong> <span class="collapse-text">(Click to expand)</span> </a>
+                <div class="panel-body" id="instructionBody"><strong>Tag the description to extract the following fields of interest</strong>
+                    <table class="table table-condensed table-striped table-responsive">
+                        <tbody>
+                        </tbody>
+                        <colgroup>
+                            <col class="col-xs-2 col-md-2" />
+                            <col class="col-xs-10 col-md-10" />
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <td>Name</td>
+                                <td>Product name. Name of the software/device/library that is affected by this vulnerability </td>
+                            </tr>
+                            <tr>
+                                <td>Version</td>
+                                <td>Version or versions of the product that is affected. E.g. "1.3.0" or "through 2.7"</td>
+                            </tr>
+                            <tr>
+                                <td>Protocol</td>
+                                <td>Form in which the input is given to exploit the vulnerability</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2>Highlight the <strong id="key-name" class="key-name">name</strong> in the description</h2>
+    <div id="raw">${description}</div>
+    <!--<div class="question">${description}</div>-->
+
+    <div class="row" id="workContent">
+        <div class="col-xs-12 col-sm-8 content">
+
+            <div id="well" class="ann well"></div>
+
+        </div>
+        <div class="col-xs-12 col-sm-4 fields">
+            <div id="button-div">
+                <button type="button" id="undo" value="undo" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-backward"></span> Undo
+                </button>
+                <button type="button" id="remove" value="remove" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-remove"></span> Reset
+                </button>
+            </div>
+
+            <div class="btn-group-vertical" data-toggle="buttons" id="Inputs">
+                <label class="btn btn-success"><input id="choose-name" name="choice" required="" value="name" type="radio"/>Name</label>
+                <label class="btn btn-default"> <input id="choose-version" name="choice" required="" value="version" type="radio"/>Version</label>
+                <label class="btn btn-default"> <input id="choose-protocol" name="choice" required="" value="protocol" type="radio"/>Protocol</label></div>
+            </aiv>
+
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 content">
+            <div class="form-group">
+                <label for="name">Product name</label>
+                <input type="text" class="form-control" id="name" disabled=disabled />
+                <input name="name" type="hidden" class="form-control" id="name-hidden"/>
+                <input name="name-tag" type="hidden" class="form-control" id="name-tag"/>
+            </div>
+            <div class="form-group">
+                <label for="version">Product version</label>
+                <input type="text" class="form-control" id="version" disabled=disabled />
+                <input name="version" type="hidden" class="form-control" id="version-hidden"/>
+                <input name="version-tag" type="hidden" class="form-control" id="version-tag"/>
+            </div>
+            <div class="form-group">
+                <label for="protocol">Protocol</label>
+                <input type="text" class="form-control" id="protocol" disabled=disabled />
+                <input name="protocol" type="hidden" class="form-control" id="protocol-hidden"/>
+                <input name="protocol-tag" type="hidden" class="form-control" id="protocol-tag"/>
+            </div>
+        </div>
+    </div>
+    </div>
+    <span title="Highlight name, veresion and protocol"><input id="submit" class="btn btn-default" data-key="Enter" type="submit" disabled=disabled /></span>
+</section>
+<link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+<link href="style.css" rel="stylesheet" />
+<script src="utils.js"></script>
+<script src="annotation.js"></script>

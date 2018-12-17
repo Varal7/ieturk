@@ -1,0 +1,74 @@
+#collapseTrigger{
+    color:#fff;
+    display: block;
+    text-decoration: none;
+}
+#submitButton{
+    white-space: normal;
+}
+#instructionBody table{
+    font-size: 14px;
+    margin-top: 10px;
+}
+#instructionBody table caption{
+    text-align: left;
+    padding: 0 0 5px 0;
+}
+#Inputs{
+    display: block;
+    margin-top: 10px;
+}
+.content{
+    margin-bottom: 15px;
+}
+.question{
+    margin-left: 15px;
+    padding-left: 10px;
+    border-left: double;
+}
+.radio:first-of-type{
+    margin-top: -5px;
+}
+
+.ann {
+    font-size: 20px;
+}
+
+.ann > span.token {
+    cursor: pointer;
+}
+
+.ann > span.token:hover {
+    text-decoration: underline;
+}
+
+.ann > strong.annotation {
+    font-weight: normal;
+    background-color: #EAD379;
+}
+
+.ann > strong.annotation:hover {
+    text-decoration: line-through;
+}
+
+/*
+.ann > strong.annotation:nth-of-type(odd) {
+    background-color: #67BCDB;
+}
+
+.ann > strong.annotation:nth-of-type(even) {
+    background-color: #EAD379;
+}
+*/
+
+.btn-ann {
+    font-size: 10px;
+}
+
+input[disabled] {
+    color: #000
+}
+
+#key-name {
+    background-color: #EAD379;
+}
