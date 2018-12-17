@@ -31,6 +31,17 @@ if($(this).is(":checked")){
 }
 });
 
+$(document).on('keypress', function(e) {
+    if (e.key == 'a') {
+        console.log('a');
+        $('#choose-name').click();
+    } else if (e.key == 'e') {
+        $('#choose-version').click();
+    } else if (e.key == 'r') {
+        $('#choose-protocol').click();
+    }
+});
+
 // update when clicking on checkbox
 var checkboxes = $("#form input:checkbox");
 checkboxes.change(function() { show(); });
