@@ -104,7 +104,7 @@ function loadData(file) {
         for(let row of data) {
             html += '<tr>\r\n';
             for(let item of row) {
-                html += '<td>' + item.replace(">>", " ") + '</td>\r\n';
+                html += '<td>' + item.replace(new RegExp('>>', 'g'), ' ') + '</td>\r\n';
             }
             html += '</tr>\r\n';
 
