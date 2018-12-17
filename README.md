@@ -14,3 +14,4 @@ npm install -g localturk
 localturk template.html input.csv output.csv
 ```
 
+![Screenshot](https://raw.githubusercontent.com/Varal7/ieturk/master/tagging.gif)
