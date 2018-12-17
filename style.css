@@ -47,6 +47,21 @@
     background-color: #EAD379;
 }
 
+.ann > strong.annotation-name {
+    font-weight: normal;
+    background-color: #EAD379;
+}
+
+.ann > strong.annotation-version {
+    font-weight: normal;
+    background-color: #67BCDB;
+}
+
+.ann > strong.annotation-protocol {
+    font-weight: normal;
+    background-color: #92C372;
+}
+
 .ann > strong.annotation:hover {
     text-decoration: line-through;
 }

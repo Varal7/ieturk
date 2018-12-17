@@ -1,0 +1,77 @@
+<html>
+    <title>Visualize annotations</title>
+    <body>
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <p></p>
+    <section class="container" id="Relevancy">
+
+
+    <div class="row" id="workContent">
+            <h2 id="title">Description</h2>
+        <div class="col-xs-12 col-sm-8 content">
+
+            <div id="well" class="ann well"></div>
+
+        </div>
+        <div class="col-xs-12 col-sm-4 fields">
+            <button class="btn btn-warning">
+                <input type="file" id="file" name="file"/>
+            </button>
+            <p id="cur"></p>
+            <p></p>
+            <div id="button-div">
+                <button type="button" id="prev" value="prev" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-step-backward"></span> Previous
+                </button>
+                <button type="button" id="next" value="next" class="btn btn-primary" width="50px">
+                    <span class="glyphicon glyphicon-step-forward"></span> Next
+                </button>
+            </div>
+        </div>
+
+    </div>
+    <div id="form" class="row">
+        <input name="name" type="hidden" class="form-control" id="name-hidden"/>
+        <input name="name-tag" type="hidden" class="form-control" id="name-tag"/>
+        <input name="version" type="hidden" class="form-control" id="version-hidden"/>
+        <input name="version-tag" type="hidden" class="form-control" id="version-tag"/>
+        <input name="protocol" type="hidden" class="form-control" id="protocol-hidden"/>
+        <input name="protocol-tag" type="hidden" class="form-control" id="protocol-tag"/>
+        <div class="col-xs-12 col-sm-12 content">
+            <label for="name">Product name</label>
+            <div class="form-row">
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="name" disabled=disabled />
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 content">
+            <label for="name">Product version</label>
+            <div class="form-row">
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="version" disabled=disabled />
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 content">
+            <label for="name">Protocol</label>
+            <div class="form-row">
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="protocol" disabled=disabled />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <table id="contents" style="width:100%; height:400px;" border> </table>
+    </div>
+</section>
+<link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.8.9/jquery.csv.js"></script>
+<link href="style.css" rel="stylesheet" />
+<script src="visualize.js"></script>
+</body>
+</html>
