@@ -71,6 +71,17 @@ $("#next").click(function() {
     show();
 });
 
+
+// Support keyboard shortcuts via, e.g. <.. data-key="1" />
+$(document).on('keypress', function(e) {
+    var key = e.key;
+    const el = document.querySelector('[data-key="' + key + '"]');
+    if (el) {
+    e.preventDefault();
+    el.click();
+    }
+});
+
 // ---------------------------------------------------------
 // Read file
 // ---------------------------------------------------------
