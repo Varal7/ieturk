@@ -18,6 +18,8 @@ Requires [localturk](https://github.com/danvk/localturk). Install using
 npm install -g localturk
 ```
 
+Then simply run it using the same tokenized csv file
+
 ```
 localturk annotation.html input.csv output.csv
 ```
@@ -27,3 +29,6 @@ localturk annotation.html input.csv output.csv
 ## Visualize
 
 Simply open `visualize.html` with any modern browser.
+Then choose the `.csv` that came from either localturk or Mechanical Turk.
+
+![Screenshot](https://raw.githubusercontent.com/Varal7/ieturk/master/viz.png)
