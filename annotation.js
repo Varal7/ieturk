@@ -13,9 +13,9 @@ var shortName = {
     "protocol": "protocol",
 }
 var longDesc = {
-    "name": "Product name",
-    "version": "Product version",
-    "protocol": "Protocol",
+    "name": "Product name. Name of the software/device/library that is affected by this vulnerability ",
+    "version": 'Version or versions of the product that is affected. E.g. "1.3.0" or "through 2.7"',
+    "protocol": "Form in which the input is given to exploit the vulnerability",
 }
 var shortcutKey = {
     "name": "a",
@@ -37,6 +37,7 @@ var well = $('#well');
 var submit = $('#submit');
 var choice = $('#choice');
 var keyname = $('#key-name');
+var instructionTable = $('#instruction-table');
 
 var form = $("#form");
 var answer = {};
@@ -46,6 +47,14 @@ var radios = {};
 // answerHiddenDuplicates value of answer but is needed because
 // otherwise the data is not sent
 var answerHidden = {};
+
+var makeInstruction = function(key) {
+    return ($(
+        '<tr>')
+        .append($('<td>').text(fieldName[key]))
+        .append($('<td>').text(longDesc[key]))
+    );
+}
 
 var makeChoice = function(key) {
     var input = ($(
@@ -143,6 +152,7 @@ var makeDom = function() {
         choice.append(makeChoice(key));
         annotations[key] = [];
         values[key] = "";
+        instructionTable.append(makeInstruction(key));
     }
 }
 

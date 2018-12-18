@@ -11,7 +11,6 @@ var next = $('#next');
 var cur = $('#cur');
 
 var KEYS = ["name", "version", "protocol"];
-var key = "name";
 var answer = {
     "name":$('#name'),
     "version":$('#version'),
