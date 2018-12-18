@@ -34,6 +34,10 @@
     font-size: 20px;
 }
 
+.disp {
+    font-size: 20px;
+}
+
 .ann > span.token {
     cursor: pointer;
 }
@@ -42,39 +46,27 @@
     text-decoration: underline;
 }
 
-.ann > strong.annotation {
-    font-weight: normal;
-    background-color: #EAD379;
-}
-
-.ann > strong.annotation-name {
-    font-weight: normal;
-    background-color: #EAD379;
-}
-
-.ann > strong.annotation-version {
-    font-weight: normal;
-    background-color: #67BCDB;
-}
-
-.ann > strong.annotation-protocol {
-    font-weight: normal;
-    background-color: #92C372;
-}
-
 .ann > strong.annotation:hover {
     text-decoration: line-through;
 }
 
-/*
-.ann > strong.annotation:nth-of-type(odd) {
+.annotation {
+    font-weight: normal;
+    background-color: #EAD379;
+}
+
+.annotation-0 {
+    background-color: #EAD379;
+}
+
+.annotation-1 {
     background-color: #67BCDB;
 }
 
-.ann > strong.annotation:nth-of-type(even) {
-    background-color: #EAD379;
+.annotation-2 {
+    background-color: #92C372;
 }
-*/
+
 
 .btn-ann {
     font-size: 10px;

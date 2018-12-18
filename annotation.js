@@ -71,6 +71,7 @@ var makeChoice = function(key) {
         .addClass('btn btn-default')
         .text(fieldName[key])
         .append(input)
+        .attr({'title': "Shortcut: " +  shortcutKey[key]})
     );
     return label;
 }

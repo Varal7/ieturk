@@ -9,16 +9,54 @@ var title = $('#title');
 var prev = $('#prev');
 var next = $('#next');
 var cur = $('#cur');
+var form = $("#form");
 
-var KEYS = ["name", "version", "protocol"];
-var answer = {
-    "name":$('#name'),
-    "version":$('#version'),
-    "protocol":$('#protocol'),
-}
+var keys = [];
+var key2id = {};
+var answer = {};
 
 var contents = [];
 var idx = 0;
+
+// ---------------------------------------------------------
+// Create jQuery elements
+// ---------------------------------------------------------
+
+var makeFormRow = function(key) {
+    var input = ($(
+        '<input>')
+        .attr({'type': 'text', 'disabled':'disabled', 'id': key})
+        .addClass('form-control')
+    );
+
+    var div = ($(
+        '<div>')
+        .addClass('col-xs-12 col-sm-12 content')
+        .append($('<label>')
+            .attr({'for': key})
+            .text(key)
+        )
+        .append($('<div>')
+            .addClass('form-row')
+            .append($('<div>')
+                .addClass('col-sm-8')
+                .append(input)
+            )
+            .append($('<div>')
+                .addClass('disp col-sm-4')
+                .append($('<strong>')
+                    .addClass('annotation annotation-' + key2id[key])
+                    .text(key)
+                )
+            )
+        )
+    );
+    answer[key] = input;
+    return div;
+}
+
+
+
 // ---------------------------------------------------------
 // Displaying
 // ---------------------------------------------------------
@@ -27,12 +65,12 @@ var sequence_html = function(sequence, annotationsDict) {
     var ret = _.map(sequence, function(token, index) {
         return '<span class="token" id=tok_' + index + '> ' + token + ' </span>';
     });
-    for (let key of KEYS) {
+    for (let key of keys) {
         var annotations = annotationsDict[key].split(",")
         for (var i = 0; i < annotations.length; i+=2) {
             var begin = parseInt(annotations[i]);
             var stop = parseInt(annotations[i+1]);
-            ret[begin] = '<strong class="annotation-' + key + '">' + ret[begin];
+            ret[begin] = '<strong class="annotation annotation-' + key2id[key] + '">' + ret[begin];
             ret[stop -1 ] = ret[stop -1] + '</strong>';
         }
     }
@@ -48,9 +86,8 @@ var show = function() {
 
     seq_html = sequence_html(tokens, annotationsDict);
     well.html(seq_html);
-    title.html('Description of <a href="https://nvd.nist.gov/vuln/detail/' + contents[idx]['cveid'] + '">' + contents[idx]['cveid'] + "</a>" );
     cur.html(1 + idx + "/" + contents.length);
-    for (let key of KEYS) {
+    for (let key of keys) {
         answer[key].val(values[key]);
     }
 };
@@ -100,17 +137,25 @@ function loadData(file) {
     reader.onload = function(event){
         var csv = event.target.result;
         var data = $.csv.toArrays(csv);
+        // Read header
         var header = data.shift();
         var col2id = {};
         for (var [index, col] of header.entries()) {
             col2id[col] = index;
+            var r = col.indexOf('-tag');
+            if (r > 0) {
+                keys.push(col.substring(0, r));
+            }
         }
+        for (var [index, key] of keys.entries()) { key2id[key] = index; }
+        // Read body
         var html = '';
         html += '<tr>\r\n';
         for(let item of header) {
             html += '<th>' + item + '</th>\r\n';
         }
         html += '</tr>\r\n';
+        // Fill in data
         for(let row of data) {
             html += '<tr>\r\n';
             for(let item of row) {
@@ -119,21 +164,20 @@ function loadData(file) {
             html += '</tr>\r\n';
 
             contents.push({
-                'cveid': row[col2id["cveid"]],
                 'description': row[col2id["description"]],
-                'annotations': {
-                    'name': row[col2id["name-tag"]],
-                    'version': row[col2id["version-tag"]],
-                    'protocol': row[col2id["protocol-tag"]],
-                },
-                'values': {
-                    'name': row[col2id["name"]],
-                    'version': row[col2id["version"]],
-                    'protocol': row[col2id["protocol"]],
-                }
+                'annotations': keys.reduce(function(obj, key) {
+                    obj[key] = row[col2id[key + "-tag"]]; return obj;
+                }, {}),
+                'values': keys.reduce(function(obj, key) {
+                    obj[key] = row[col2id[key]]; return obj;
+                }, {}),
             });
         }
+        // Create html
         $('#contents').html(html);
+        for (var key of keys) {
+            form.append(makeFormRow(key));
+        }
         show();
     };
     reader.onerror = function(){ alert('Unable to read ' + file.fileName); };
