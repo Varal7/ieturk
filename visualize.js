@@ -1,7 +1,12 @@
 // ---------------------------------------------------------
-// Visualize annotations
+// Config
 // ---------------------------------------------------------
 
+var colors = ["#EAD379", "#67BCDB", "#92C372"];
+
+// ---------------------------------------------------------
+// Visualize annotations
+// ---------------------------------------------------------
 
 var raw = $('#raw');
 var well = $('#well');
@@ -14,7 +19,6 @@ var form = $("#form");
 var keys = [];
 var key2id = {};
 var answer = {};
-
 var contents = [];
 var idx = 0;
 
@@ -89,6 +93,8 @@ var show = function() {
     cur.html(1 + idx + "/" + contents.length);
     for (let key of keys) {
         answer[key].val(values[key]);
+        var index = key2id[key];
+        $(".annotation-" + index).css("background-color", colors[index % colors.length]);
     }
 };
 
