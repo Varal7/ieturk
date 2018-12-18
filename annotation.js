@@ -1,47 +1,150 @@
 // ---------------------------------------------------------
-// Allows annotations
+// Config
 // ---------------------------------------------------------
 
+var fieldName = {
+    "name": "Product name",
+    "version": "Product version",
+    "protocol": "Protocol",
+}
+var shortName = {
+    "name": "name",
+    "version": "version",
+    "protocol": "protocol",
+}
+var longDesc = {
+    "name": "Product name",
+    "version": "Product version",
+    "protocol": "Protocol",
+}
+var shortcutKey = {
+    "name": "a",
+    "version": "e",
+    "protocol": "r",
+}
+
+var keys = Object.keys(fieldName);
+var annotations = {};
+var values = {};
+var key;
+
+// ---------------------------------------------------------
+// Create jQuery elements
+// ---------------------------------------------------------
 
 var raw = $('#raw');
 var well = $('#well');
 var submit = $('#submit');
+var choice = $('#choice');
 var keyname = $('#key-name');
 
-var answer = {
-    "name":$('#name'),
-    "version":$('#version'),
-    "protocol":$('#protocol'),
+var form = $("#form");
+var answer = {};
+var tagHidden = {};
+var noVal = {};
+var radios = {};
+// answerHiddenDuplicates value of answer but is needed because
+// otherwise the data is not sent
+var answerHidden = {};
+
+var makeChoice = function(key) {
+    var input = ($(
+        '<input>')
+        .attr({
+            'name': 'choice', 'id': key + "-choice",
+            'value': key, 'type': 'radio', 'data-key': shortcutKey[key]
+        })
+        .text(fieldName[key])
+    );
+    radios[key] = input;
+    var label = ($(
+        '<label>')
+        .addClass('btn btn-default')
+        .text(fieldName[key])
+        .append(input)
+    );
+    return label;
 }
-var answerHidden = {
-    "name":$('#name-hidden'),
-    "version":$('#version-hidden'),
-    "protocol":$('#protocol-hidden'),
+
+var makeAnswerHidden = function(key) {
+    var input = ($(
+        '<input>')
+        .attr({'type': 'hidden', 'id': key + "-hidden"})
+    );
+    answerHidden[key] = input;
+    return input;
 }
-var tagHidden = {
-    "name":$('#name-tag'),
-    "version":$('#version-tag'),
-    "protocol":$('#protocol-tag'),
-}
-var noVal = {
-    "name":$('#no-name'),
-    "version":$('#no-version'),
-    "protocol":$('#no-protocol'),
-}
-var annotations = {
-    "name": [],
-    "version": [],
-    "protocol": [],
-}
-var values = {
-    "name": "",
-    "version": "",
-    "protocol": "",
+
+var makeTagHidden = function(key) {
+    var input = ($(
+        '<input>')
+        .attr({'type': 'hidden', 'id': key + "-tag"})
+    );
+    tagHidden[key] = input;
+    return input;
 }
 
 
+var  makeFormRow = function(key) {
+    var checkbox = ($(
+        '<input>')
+        .attr({'type': 'checkbox', 'id': "no-" + key})
+        .addClass('form-check-input')
+        .change(function() { show(); })
+    );
+    var label = ($(
+        '<label>')
+        .attr({'for': "no-" + key})
+        .addClass('form-check-label')
+        .text(' There is no ' + shortName[key])
+    );
 
-var tokens = raw.text().split(">>");
+    var input = ($(
+        '<input>')
+        .attr({'type': 'text', 'disabled':'disabled', 'id': key})
+        .addClass('form-control')
+    );
+
+    var div = ($(
+        '<div>')
+        .addClass('col-xs-12 col-sm-12 content')
+        .append($('<label>')
+            .attr({'for': key})
+            .text(fieldName[key])
+        )
+        .append($('<div>')
+            .addClass('form-row')
+            .append($('<div>')
+                .addClass('col-sm-8')
+                .append(input)
+            )
+            .append($('<div>')
+                .addClass('col-sm-4')
+                .append($('<div>')
+                    .addClass('form-check')
+                    .append(checkbox)
+                    .append(' ')
+                    .append(label)
+                )
+            )
+        )
+    );
+    answer[key] = input;
+    noVal[key] = checkbox;
+    return div;
+}
+
+
+var makeDom = function() {
+    for (var key of keys) {
+        form.append(makeFormRow(key));
+        form.append(makeTagHidden(key));
+        form.append(makeAnswerHidden(key));
+        choice.append(makeChoice(key));
+        annotations[key] = [];
+        values[key] = "";
+    }
+}
 
 // ---------------------------------------------------------
 // Annotation logic
@@ -126,10 +229,12 @@ var toggle_old_new = function() {
 
 var sequence_html = function(sequence, annotations) {
     var ret = _.map(sequence, function(token, index) {
-        return '<span class="token" id=tok_' + index + '> ' + token + ' </span>';
+        return '<span class="token" id=tok_' + index + '> '
+            + token + ' </span>';
     });
     _.each(annotations, function(annotation) {
-        ret[annotation[0]] = '<strong class="annotation">' + ret[annotation[0]];
+        ret[annotation[0]] = '<strong class="annotation">'
+            + ret[annotation[0]];
         ret[annotation[1]-1] = ret[annotation[1]-1] + '</strong>';
     });
 
@@ -139,9 +244,9 @@ var sequence_html = function(sequence, annotations) {
 
 
 var canSubmit = function() {
-    if (values["name"] == "" && !noVal['name'].is(":checked")) { return false; }
-    if (values["version"] == "" && !noVal['version'].is(":checked")) { return false; }
-    if (values["protocol"] == "" && !noVal['protocol'].is(":checked")) { return false; }
+    for (var key of keys) {
+        if (values[key] == "" && !noVal[key].is(":checked")) { return false; }
+    }
     return true;
 }
 
@@ -156,8 +261,9 @@ var show = function() {
     answer[key].val(values[key]);
     answerHidden[key].val(values[key]);
     tagHidden[key].val(annotations[key]);
+    console.log(key);
     console.log(annotations[key]);
-    keyname.html(key);
+    keyname.html(shortName[key]);
 
 
     // Handler on tokens
@@ -179,6 +285,9 @@ var show = function() {
     }
 };
 
+
+makeDom();
+
 // ---------------------------------------------------------
 // Event handlers
 // ---------------------------------------------------------
@@ -194,6 +303,44 @@ $("#remove").click(function() {
     show();
 });
 
+//highlight selected category
+var inputs = $("#choice input:radio");
+inputs.change(function(){
+    inputs.parent().removeClass("btn-success");
+    inputs.parent().addClass("btn-default");
+    if($(this).is(":checked")){
+        key =  $(this).val();
+        $(this).parent().removeClass("btn-default");
+        $(this).parent().addClass("btn-success");
+        show();
+    }else{
+        $(this).parent().removeClass("btn-success");
+        $(this).parent().addClass("btn-default");
+    }
+});
 
+// Instructions expand/collapse
+var content = $('#instructionBody');
+var trigger = $('#collapseTrigger');
+content.hide();
+$('.collapse-text').text('(Click to expand)');
+trigger.click(function(){
+    content.toggle();
+    var isVisible = content.is(':visible');
+    if(isVisible){
+        $('.collapse-text').text('(Click to collapse)');
+    }else{
+        $('.collapse-text').text('(Click to expand)');
+    }
+});
+
+// ---------------------------------------------------------
+// Initialize
+// ---------------------------------------------------------
+
+
+key = keys[0];
+radios[key].click();
+var tokens = raw.text().split(">>");
 raw.hide();
 show();
