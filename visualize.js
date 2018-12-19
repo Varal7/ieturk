@@ -157,16 +157,21 @@ function loadData(file) {
             }
         }
         for (var [index, key] of keys.entries()) { key2id[key] = index; }
-        // Read body
+        // Create header
         var html = '';
+        html += '<thead>\r\n';
         html += '<tr>\r\n';
+        html += '<th>id</th>\r\n';
         for(let item of header) {
             html += '<th>' + item + '</th>\r\n';
         }
         html += '</tr>\r\n';
+        html += '</thead>\r\n';
+        html += '<tbody>\r\n';
         // Fill in data
-        for(let row of data) {
-            html += '<tr>\r\n';
+        for(let [index, row] of data.entries()) {
+            html += '<tr class="entry" data-val="' + index + '">\r\n';
+            html += '<td>' + (index + 1)  + '</td>\r\n';
             for(let item of row) {
                 html += '<td>' + item.replace(new RegExp('>>', 'g'), ' ') + '</td>\r\n';
             }
@@ -182,11 +187,17 @@ function loadData(file) {
                 }, {}),
             });
         }
+        html += '</tbody>\r\n';
         // Create html
         $('#contents').html(html);
         for (var key of keys) {
             form.append(makeFormRow(key));
         }
+        // Add handler on links
+        $('.entry').click(function() {
+            idx = parseInt($(this).attr('data-val'));
+            show();
+        });
         show();
     };
     reader.onerror = function(){ alert('Unable to read ' + file.fileName); };
