@@ -79,7 +79,7 @@ var makeChoice = function(key) {
 var makeAnswerHidden = function(key) {
     var input = ($(
         '<input>')
-        .attr({'type': 'hidden', 'id': key + "-hidden"})
+        .attr({'type': 'hidden', 'name': key, 'id': key + "-hidden"})
     );
     answerHidden[key] = input;
     return input;
@@ -88,7 +88,7 @@ var makeAnswerHidden = function(key) {
 var makeTagHidden = function(key) {
     var input = ($(
         '<input>')
-        .attr({'type': 'hidden', 'id': key + "-tag"})
+        .attr({'type': 'hidden', 'name': key + "-tag", 'id': key + "-tag"})
     );
     tagHidden[key] = input;
     return input;
