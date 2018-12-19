@@ -25,14 +25,14 @@ Then simply run it using the same tokenized csv file as for Mechanical Turk.
 localturk annotation.html input.csv output.csv
 ```
 
-![Screenshot](https://raw.githubusercontent.com/Varal7/ieturk/master/tagging.gif)
+![Screenshot](https://raw.githubusercontent.com/Varal7/ieturk/master/images/tagging.gif)
 
 ## Visualize
 
 Simply open `visualize.html` with any modern browser.
 Then choose the `.csv` that came from either localturk or Mechanical Turk.
 
-![Screenshot](https://raw.githubusercontent.com/Varal7/ieturk/master/viz.png)
+![Screenshot](https://raw.githubusercontent.com/Varal7/ieturk/master/images/viz.png)
 
 This file is also served at [Visualization Demo](http://people.csail.mit.edu/quach/ieturk-demo/).
 You can try uploading this [CSV file](https://raw.githubusercontent.com/Varal7/ieturk/master/example/output.csv).
