@@ -1,7 +1,6 @@
 import csv
 import spacy
 
-
 nlp = spacy.load('en')
 
 csvin = csv.reader(open("raw.csv"))
