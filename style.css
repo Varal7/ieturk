@@ -55,6 +55,28 @@
     background-color: #EAD379;
 }
 
+.annotation-container {
+  line-height: 42px !important;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  white-space: pre;
+  cursor: default;
+}
+
+.annotation {
+  border: 2px solid;
+  color: #232323;
+  margin: 4px 6px 4px 3px;
+  vertical-align: middle;
+  box-shadow: 2px 4px 20px rgba(0,0,0,0.1);
+  position: relative;
+  cursor: default;
+  min-width: 26px;
+  line-height: 22px;
+  display: flex;
+}
+
 .btn-ann {
     font-size: 10px;
 }
