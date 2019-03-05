@@ -12,6 +12,7 @@ var key;
 // ---------------------------------------------------------
 
 var raw = $('#raw');
+var spans = $('#spans');
 var well = $('#well');
 var submit = $('#submit');
 var choice = $('#choice');
@@ -51,6 +52,7 @@ var makeChoice = function(key) {
         .text(fieldName[key])
         .append(input)
         .attr({'title': "Shortcut: " +  shortcutKey[key]})
+        .attr('hidden')
     );
     return label;
 }
@@ -329,8 +331,19 @@ trigger.click(function(){
 // ---------------------------------------------------------
 
 
+var spansStrToAns =  function(spansStrToAns) {
+    var annList = _.map(spansStrToAns.split(","), function(el) {return parseInt(el)});
+    var i = 2, list = _.groupBy(annList, function(a, b){
+        return Math.floor(b/i);
+    });
+    return _.toArray(list);
+}
+
 key = keys[0];
 radios[key].click();
 var tokens = raw.text().split(">>");
 raw.hide();
+spans.hide();
+annotations['answer'] = spansStrToAns(spans.text());
+console.log(annotations);
 show();

@@ -22,6 +22,7 @@
 
     <h2>Highlight the <strong id="key-name" class="key-name">name</strong> in the description</h2>
     <div id="raw">${description}</div>
+    <div id="spans">${spans}</div>
 
     <div class="row" id="workContent">
         <div class="col-xs-12 col-sm-8 content">
@@ -43,6 +44,16 @@
         </div>
 
     </div>
+
+     <div class="row">
+        <div class="col-xs-12 col-sm-8 content">
+            <div class="form-group">
+                <label for="question-sub">Question</label>
+                <input type="text" name="question-sub" id="question-sub" class="form-control" value="${question}">
+            </div>
+        </div>
+    </div>
+
     <div id="form" class="row"> </div>
     <span title="Highlight all fields before submitting"><input id="submit" class="btn btn-default" data-key="Enter" type="submit" disabled=disabled /></span>
 </section>

@@ -53,6 +53,8 @@
 .annotation {
     font-weight: normal;
     background-color: #EAD379;
+    border-style: solid;
+    border-width: 2px;
 }
 
 .btn-ann {
