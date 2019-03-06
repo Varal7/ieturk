@@ -9,7 +9,7 @@ We can use it by uncommenting the corresponding line at the bottom of `annotatio
 We can then start annotating after calling
 
 ```
-localturk annotation.html examples/input.csv output.csv
+localturk annotation.html example/ner.csv output.csv
 ```
 
 The `output.csv` is an example output.
