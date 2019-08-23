@@ -22,6 +22,7 @@
 
     <h2>Highlight the <strong id="key-name" class="key-name">name</strong> in the description</h2>
     <div id="raw">${description}</div>
+    <div id="spans">${spans}</div>
 
     <div class="row" id="workContent">
         <div class="col-xs-12 col-sm-8 content">
@@ -44,7 +45,8 @@
 
     </div>
     <div id="form" class="row"> </div>
-    <span title="Highlight all fields before submitting"><input id="submit" class="btn btn-default" data-key="Enter" type="submit" disabled=disabled /></span>
+    <span title="Highlight all fields before submitting"><input name="submit" id="submit" class="btn btn-default" data-key="Enter" type="submit" disabled=disabled /></span>
+    <span title="Highlight all fields before submitting"><input name="submit-stay" id="submit-stay" class="btn btn-default" data-key="Enter" type="submit" disabled=disabled  value="Save and annotate another reaction"/></span>
 </section>
 <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
@@ -53,5 +55,5 @@
 <link href="style.css" rel="stylesheet" />
 <script src="config.js"></script>
 <!--Uncomment the next line for a NER task-->
-<!--<script src="example/config.js"></script>--> 
+<!--<script src="example/config.js"></script>-->
 <script src="annotation.js"></script>
