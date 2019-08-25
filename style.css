@@ -55,6 +55,12 @@
     background-color: #EAD379;
 }
 
+.underlined {
+  text-decoration: underline;
+  color: #009;
+  font-weight: bold;
+}
+
 .btn-ann {
     font-size: 10px;
 }

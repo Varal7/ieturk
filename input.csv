@@ -1,2 +1,2 @@
-cveid,description
-2018-11013,"Stack-based>>buffer>>overflow>>in>>the>>websRedirect>>function>>in>>GoAhead>>on>>D-Link>>DIR-816>>A2>>(CN)>>routers>>with>>firmware>>version>>1.10B05>>allows>>unauthenticated>>remote>>attackers>>to>>execute>>arbitrary>>code>>via>>a>>request>>with>>a>>long>>HTTP>>Host>>header."
+cveid,description,spans
+2018-11013,"Stack-based buffer overflow in the websRedirect function in GoAhead on D-Link DIR-816 A2 (CN) routers with firmware version 1.10B05 allows unauthenticated remote attackers to execute arbitrary code via a request with a long HTTP Host header.","3,4,8,9"
